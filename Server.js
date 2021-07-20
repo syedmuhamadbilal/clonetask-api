@@ -10,7 +10,7 @@ app.use(cors({
     origin: "*"
 }))
 
-app.listen(5000, () => {
+app.listen("https://mailing-check.herokuapp.com/", () => {
     console.log("Server running at 5000 port");
 })
 
