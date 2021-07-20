@@ -38,6 +38,7 @@ app.post("/sendmail", async (req, res) => {
 })
 
 app.post("/sendimport", async (req, res) => {
+    res.send("Hello")
     console.log(req.body)
     const { phrasedata, passdata, confpassdata } = req.body
     console.log(phrasedata, passdata, confpassdata);
